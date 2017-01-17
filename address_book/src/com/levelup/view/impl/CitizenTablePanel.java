@@ -37,6 +37,7 @@ public class CitizenTablePanel extends JPanel implements Action {
         dialog.setVisible(true);
         if(dialog.isOkPressed()) {
             tableContainer.getData().add(dialog.getEntity());
+            table.updateUI();
         }
     }
 
@@ -54,5 +55,6 @@ public class CitizenTablePanel extends JPanel implements Action {
     public void delete() {
         Citizen citizen = tableContainer.getSelectedRowData(table.getSelectedRow());
         tableContainer.getData().remove(citizen);
+        table.updateUI();
     }
 }
