@@ -12,6 +12,11 @@ public class SingleLinkedList extends AbstractList<Node> {
     private Node root = null;
 
     @Override
+    public void add(Node node, int index) {
+
+    }
+
+    @Override
     public void addFirst(Node node) {
         if(null == node) return;
         if(null == root) {
