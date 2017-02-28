@@ -33,7 +33,13 @@ public class FileDataProviderImpl implements DataProvider {
     public void openConnection() {
         try {
             for (String fileName : files.toString().split(";")) {
-                File file = new File(directoryPath + File.separator + fileName);
+
+                String path = directoryPath == null || directoryPath.isEmpty()
+                        ? fileName
+                        : directoryPath + File.separator + fileName;
+
+                File file = new File(path);
+
                 if (!file.exists()) file.createNewFile();
                 dataMap.put(fileName, new RandomAccessFile(file, READ_WRITE_ACCESS));
             }
