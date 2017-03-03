@@ -8,7 +8,7 @@ import java.util.List;
 public interface Action {
 
     void create();
-    List read();
+    void read();
     void update();
     void delete();
 

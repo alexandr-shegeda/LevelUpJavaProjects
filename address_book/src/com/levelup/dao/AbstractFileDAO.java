@@ -14,10 +14,10 @@ public abstract class AbstractFileDAO<T> implements DAO<T> {
     protected final FileDataProviderImpl fileDataProvider;
     private String fileName;
 
-    public AbstractFileDAO(FileDataProviderImpl fileDataProvider, String fileName) {
-        this.fileDataProvider = fileDataProvider;
+    public AbstractFileDAO(DataProvider fileDataProvider, String fileName) {
+        this.fileDataProvider = (FileDataProviderImpl) fileDataProvider;
         this.fileName = fileName;
-        fileDataProvider.appendFile(fileName);
+        this.fileDataProvider.appendFile(fileName);
     }
 
     public RandomAccessFile getDataFile() throws IOException {
@@ -27,4 +27,11 @@ public abstract class AbstractFileDAO<T> implements DAO<T> {
     public String getFileName() {
         return fileName;
     }
+
+    protected long getNextId() {
+        if (null == id) id = initMaxId();
+        return ++id;
+    }
+
+    protected abstract long initMaxId();
 }

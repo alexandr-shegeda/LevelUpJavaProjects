@@ -20,6 +20,10 @@ public class FileDataProviderImpl implements DataProvider {
     private StringBuilder files = new StringBuilder();
     private final String directoryPath;
 
+    public FileDataProviderImpl() {
+        this.directoryPath = "";
+    }
+
     public FileDataProviderImpl(String directoryPath) {
         this.directoryPath = directoryPath;
     }

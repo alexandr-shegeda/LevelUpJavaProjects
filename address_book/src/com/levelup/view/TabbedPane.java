@@ -17,9 +17,9 @@ public class TabbedPane extends JTabbedPane implements Action {
     }
 
     @Override
-    public List read() {
+    public void read() {
         CitizenTablePanel panel = (CitizenTablePanel) getSelectedComponent();
-        return panel.read();
+        panel.read();
     }
 
     @Override
