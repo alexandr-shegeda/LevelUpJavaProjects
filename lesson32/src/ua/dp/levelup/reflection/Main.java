@@ -53,12 +53,19 @@ public class Main {
 
 
         XMLParser parser = new XMLParser();
-        String bookAsXML = parser.toXML(book);
-        System.out.println(bookAsXML);
+//        String bookAsXML = parser.toXML(book);
+//        System.out.println(bookAsXML);
 
         Author author = new Author("John", "Doe", 44);
+
+
+        long startToXML = System.currentTimeMillis();
         String authorAsXML = parser.toXML(author);
-        System.out.println(authorAsXML);
+        System.out.println(authorAsXML + " time: " + (System.currentTimeMillis() - startToXML));
+
+        long startFromXML = System.currentTimeMillis();
+        Author fromXml = (Author) parser.parseXML(authorAsXML, Author.class);
+        System.out.println(fromXml  + " time: " + (System.currentTimeMillis() - startFromXML));
     }
 
 

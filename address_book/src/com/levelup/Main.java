@@ -16,12 +16,12 @@ import java.util.ArrayList;
  */
 public class Main {
 
-    public static void main(String[] args) {
-        String citizen = "\t{\"id\": 1, \"firstName\": \"John\", \"lastName\": \"Doe\", \"age\": 46, \"streetId\": 21},";
+    public static void main(String[] args) throws Exception {
+//        String citizen = "\t{\"id\": 1, \"firstName\": \"John\", \"lastName\": \"Doe\", \"age\": 46, \"streetId\": 21},";
 
-        System.out.println(citizen.trim().replaceAll("[\",\\s{}]|id|firstName|lastName|age|streetId", ""));
+//        System.out.println(citizen.trim().replaceAll("[\",\\s{}]|id|firstName|lastName|age|streetId", ""));
 
-//        new MyDataTableFrame();
+        new MyDataTableFrame();
 
 //        FileDataProviderImpl provider = new FileDataProviderImpl("");
 //

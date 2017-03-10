@@ -1,4 +1,4 @@
-package ua.dp.levelup.reflection;
+package com.levelup.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -20,16 +20,14 @@ public class XMLParser {
         Field[] fields = clazz.getDeclaredFields();
         try {
             for (Field field : fields) {
-                if (field.isAnnotationPresent(ToXML.class)) {
-                    String fieldName = field.getName();
+                String fieldName = field.getName();
 
-                    if (!field.isAccessible()) field.setAccessible(true);
+                if (!field.isAccessible()) field.setAccessible(true);
 
-                    builder.append(String.format("\t<%s>", fieldName));
-                    builder.append(field.get(obj));
-                    builder.append(String.format("</%s>", fieldName));
-                    builder.append("\r\n");
-                }
+                builder.append(String.format("\t<%s>", fieldName));
+                builder.append(field.get(obj));
+                builder.append(String.format("</%s>", fieldName));
+                builder.append("\r\n");
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -39,7 +37,7 @@ public class XMLParser {
         return builder.toString();
     }
 
-    public Object parseXML(String xml, Class clazz) {
+    public <T> T parseXML(String xml, Class clazz) {
         try {
             Object obj = clazz.newInstance();
 
@@ -68,7 +66,7 @@ public class XMLParser {
                 Object value = getFieldValue(field, fieldValue);
 
                 try {
-                    Method method = clazz.getDeclaredMethod(composeSetterName(fieldName));
+                    Method method = clazz.getDeclaredMethod(composeSetterName(fieldName), field.getType());
 
                     method.invoke(obj, value);
                 } catch (NoSuchMethodException e) {
@@ -84,7 +82,7 @@ public class XMLParser {
                 }
             }
 
-            return obj;
+            return (T) obj;
 
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
