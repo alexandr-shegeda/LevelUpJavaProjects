@@ -1,8 +1,8 @@
 
+import hiber.User;
+
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -66,14 +66,14 @@ public class Main {
 //
 //        ResultSet resultSet = statement.executeQuery("SELECT * FROM USERS");
 //
-//        List<User> userList = new ArrayList<User>();
+//        List<hiber.User> userList = new ArrayList<hiber.User>();
 //        while (resultSet.next()) {
 //            long id = resultSet.getLong("ID");
 //            String username = resultSet.getString("USERNAME");
 //            String email = resultSet.getString("EMAIL");
 //            String pass = resultSet.getString("PASSWORD");
 //
-//            userList.add(new User(id, username, email, pass));
+//            userList.add(new hiber.User(id, username, email, pass));
 //
 //            System.out.println(resultSet.getLong("ID")
 //                    + " " + resultSet.getString("USERNAME")
