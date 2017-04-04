@@ -10,5 +10,8 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.connection.autocommit">true</property>
         <mapping class="hiber.Employee" />
+        <mapping class="hiber.Department" />
+        <mapping class="hiber.PhoneNumber" />
+        <mapping class="hiber.Post" />
     </session-factory>
 </hibernate-configuration>
