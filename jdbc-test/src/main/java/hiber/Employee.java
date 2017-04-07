@@ -18,6 +18,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@SecondaryTable(name = "EMPLOYEE_DETAILS",
+        pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID_EMPLOYEE")
+)
 public class Employee {
 
     @Id
@@ -40,7 +43,7 @@ public class Employee {
     @Column(name = "date_create")
     private Date creationDate = new Date();
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "employee")
+    @OneToOne(mappedBy = "employee")
     private PhoneNumber phoneNumber;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -50,6 +53,22 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
+
+    @Column(table = "EMPLOYEE_DETAILS")
+    @Enumerated(EnumType.STRING)
+    private Sex sex = Sex.UNKNOWN;
+
+    @Column(table = "EMPLOYEE_DETAILS")
+    private String city;
+
+    @Column(table = "EMPLOYEE_DETAILS")
+    private String streetName;
+
+    @Column(table = "EMPLOYEE_DETAILS")
+    private String zipCode;
+
+    @Embedded
+    private Car car;
 
     public Employee(String firstName, String lastName, String secondName, double salary, Department department, Post post) {
         this.firstName = firstName;

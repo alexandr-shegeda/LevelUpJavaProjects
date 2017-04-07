@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,7 +26,9 @@ public class Department {
     private long id;
     @Column
     private String title;
+
     @Column(name = "date_create")
+    @Type(type = "timestamp")
     private Date creationDate;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
