@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Entity
 public class Yacht extends Boat {
 
@@ -25,5 +24,14 @@ public class Yacht extends Boat {
         super(model, maxPassengers);
         this.maxSpeed = maxSpeed;
         this.length = length;
+    }
+
+    @Override
+    public String toString() {
+        return "Yacht{id: " + getId()
+               + ", model: " + " " + getModel()
+               + ", maxPassengers: " + " " + getMaxPassengers()
+               + ", maxSpeed: " + " " + getMaxSpeed()
+               + ", length: " + " " + getLength() + "}";
     }
 }

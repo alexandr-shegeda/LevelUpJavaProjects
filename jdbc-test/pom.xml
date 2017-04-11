@@ -12,6 +12,21 @@
     <hibernate.version>5.2.9.Final</hibernate.version>
   </properties>
 
+  <build>
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
   <dependencies>
 
     <dependency>
@@ -32,6 +47,13 @@
       <artifactId>lombok</artifactId>
       <version>1.16.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+      <version>5.2.9.Final</version>
+    </dependency>
+
 
   </dependencies>
 
