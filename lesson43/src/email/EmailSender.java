@@ -1,6 +1,8 @@
 package email;
 
 import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -28,7 +30,10 @@ public enum EmailSender {
 //        return instance;
 //    }
 
+    private volatile Lock lock = new ReentrantLock();
+
     public void sendEmail(String clientEmail, String messageText, String subject) {
+        lock.lock();
         // Recipient's email ID needs to be mentioned.
 //        String to = "levelup.java.16.6@gmail.com";
 
@@ -72,9 +77,13 @@ public enum EmailSender {
 
             // Send message
             Transport.send(message);
-            System.out.println("Sent message successfully to: " + clientEmail);
-        } catch (MessagingException mex) {
+            System.out.println(new Date() + " Sent message successfully to: " + clientEmail);
+
+            Thread.sleep(3000);
+        } catch (MessagingException | InterruptedException mex) {
             mex.printStackTrace();
         }
+
+        lock.unlock();
     }
 }

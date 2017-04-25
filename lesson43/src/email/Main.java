@@ -1,8 +1,10 @@
 package email;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
-
-import static email.EmailSender.INSTANCE;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by java on 21.04.2017.
@@ -10,23 +12,28 @@ import static email.EmailSender.INSTANCE;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-//        INSTANCE.sendEmail("petrosyan@yopmail.com", "Hello mr Petrosyan", "Very argent");
-//        emailSender.sendEmail();
-
         ArrayBlockingQueue<EmailMessage> queue = new ArrayBlockingQueue<>(10);
+
         EmailProducer producer = new EmailProducer(queue);
 
-        EmailConsumer consumer1 = new EmailConsumer(queue);
-        EmailConsumer consumer2 = new EmailConsumer(queue);
-        EmailConsumer consumer3 = new EmailConsumer(queue);
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-        producer.start();
+        executorService.execute(new EmailConsumer(queue));
+        executorService.execute(new EmailConsumer(queue));
+        executorService.execute(new EmailConsumer(queue));
 
-        consumer1.start();
-        consumer2.start();
-        consumer3.start();
+        List<EmailMessage> messageList = Arrays.asList(
+                new EmailMessage("user1@yopmail.com", "text message", "text message"),
+                new EmailMessage("user2@yopmail.com", "text message", "text message"),
+                new EmailMessage("user3@yopmail.com", "text message", "text message"),
+                new EmailMessage("user4@yopmail.com", "text message", "text message"),
+                new EmailMessage("user5@yopmail.com", "text message", "text message"),
+                new EmailMessage("user6@yopmail.com", "text message", "text message"),
+                new EmailMessage("user7@yopmail.com", "text message", "text message"),
+                new EmailMessage("user8@yopmail.com", "text message", "text message")
+        );
+        producer.sendMessage(messageList);
 
-
-        Thread.sleep(10000);
+        executorService.shutdown();
     }
 }
