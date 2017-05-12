@@ -15,7 +15,7 @@
 
   <script>
     var wsocket;
-    var serviceLocation = "ws://127.0.0.1:8080/chat/";
+    var serviceLocation = "ws://10.47.91.253:8080/chat/";
     var $nickName;
     var $message;
     var $chatWindow;
@@ -30,6 +30,7 @@
                            + '</td></tr>');
       $chatWindow.append($messageLine);
     }
+
     function sendMessage() {
       var msg = '{"message":"' + $message.val() + '", "sender":"'
                 + $nickName.val() + '", "received":""}';
