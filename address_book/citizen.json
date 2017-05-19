@@ -1,0 +1,4 @@
+{"citizenList": [
+	{"id": 1, "firstName": "John", "lastName": "Doe", "age": 46, "streetId": 21},
+	{"id": 2, "firstName": "Max", "lastName": "Payne", "age": 47, "streetId": 11}
+]}

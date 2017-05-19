@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <img src="${pageContext.request.contextPath}/resources/login-img.png"/>
+<img src="<c:url value="/images/login-img.png"/>" alt="login preview">
 
     <form action="<%=request.getServletContext().getContextPath()%>/welcome" method="post">
         <input name="login" type="text">
